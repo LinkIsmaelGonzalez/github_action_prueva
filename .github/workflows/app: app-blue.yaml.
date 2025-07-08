@@ -1,1 +1,11 @@
-
+apiVesion: v1
+kind: Service
+metadata:
+  name: blue-green-Service
+spec:
+  selector:
+    app: app-green
+  posts:
+    - protocol: TCP
+      port: 80
+      targePort: 8080
