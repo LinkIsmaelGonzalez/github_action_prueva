@@ -1,1 +1,23 @@
+apiVersion: app/v1
 
+kind: Deploment
+
+metadata:
+
+  name: rolling-update-demo
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - name: demo-container
+          image: nginx:1.21
+          ports:
+            - containerPort: 80
