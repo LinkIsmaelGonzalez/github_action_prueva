@@ -1,0 +1,27 @@
+name: CD pipeline
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            #Checkout del codigo
+            -   name: Checkout code
+                user: action/checkout@v3
+
+            #Construccion
+            -   name: build application
+                run: |
+                    npm install
+                    npm run build
+
+            #Despliegue
+            -   name: Deploy to prodution
+                run: |
+                    scp -r ./dist user@production-server:/var/www/html
