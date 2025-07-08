@@ -1,0 +1,16 @@
+from flask import flask, jsonify
+from flipper import FeatureFlag
+
+app = flask(__name__) 
+
+#Configuracion tuggle
+feature_tuggle = FeatureFlag('new-feature')
+
+#Endpoint con tuggle
+@app.route('/feature')
+
+def feature():
+    if feature_tuggle.is_active():
+        return jsonify({"messaje" : "Nueva funcionalidad activa"})
+    else
+        return jsonify({"messaje" : "funcionalidad antigua"})
