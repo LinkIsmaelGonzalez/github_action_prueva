@@ -1,1 +1,6 @@
-
+reservers: 
+  - name: slack-notifications
+    slack_configs:
+      - channel: 'alerts'
+        send_resolved: true
+ 
