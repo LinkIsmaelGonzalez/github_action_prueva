@@ -16,13 +16,20 @@ jobs:
                 user: action/checkout@v3
               
             
-            #Construccion
+            #Construccion del proyecto
             -   name: build application
                 run: |
                     npm install
                     npm run build
 
-            #Despliegue
+            #pruevas automatizadas
+            -   name: Run test
+                run: |
+                    npm test
+
+            #Despliegue de produccion
             -   name: Deploy to prodution
+                env:
+                    SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
                 run: |
                     scp -r ./dist user@production-server:/var/www/html
