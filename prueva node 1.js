@@ -26,3 +26,12 @@ app.get((req, res, next) =>{
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
+npm install dotenv 
+
+require('dotenv'.config());
+cont port = process.env.PORT || 3000
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('¡Algo salio Mal!');
+});
